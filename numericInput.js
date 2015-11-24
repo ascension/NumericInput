@@ -12,7 +12,8 @@
 	// Plugin defaults
 	var defaults = {
 		allowFloat: false,
-		allowNegative: false
+		allowNegative: false,
+		allowPlus: false
 	};	
 	
 	// Plugin definition
@@ -22,6 +23,7 @@
 		var settings = $.extend( {}, defaults, options ); 
 		var allowFloat = settings.allowFloat;
 		var allowNegative = settings.allowNegative;
+		var allowPlus = settings.allowPlus;
 		
 		this.keypress(function (event) {
 			var inputCode = event.which;
@@ -51,7 +53,8 @@
 
 				else if (inputCode == 8) 	// Allows backspace
 					return true; 
-
+				else if(inputCode == 187 && allowPlus == true)
+					return true;
 				else								// Disallow non-numeric
 					return false;  
 			}
